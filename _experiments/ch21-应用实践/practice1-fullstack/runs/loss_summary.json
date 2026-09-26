@@ -1,0 +1,24 @@
+{
+  "head": {
+    "loss_mean": 19.5966,
+    "loss_last": 7.0279,
+    "gnorm_max": 79.015,
+    "steps": "1-825"
+  },
+  "mid": {
+    "loss_mean": 6.8539,
+    "loss_last": 6.6626,
+    "gnorm_max": 0.894,
+    "steps": "850-1675"
+  },
+  "tail": {
+    "loss_mean": 6.5392,
+    "loss_last": 6.4941,
+    "gnorm_max": 0.904,
+    "steps": "1700-2500"
+  },
+  "spike_steps": [
+    2225
+  ],
+  "verdict": "需要人工复核"
+}

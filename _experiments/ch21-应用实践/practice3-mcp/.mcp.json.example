@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "lit-server": {
+      "command": "D:/Anaconda/envs/fed_clean_v2/python.exe",
+      "args": ["I:/mydesk/ai-for-statistics/_experiments/ch21-应用实践/practice3-mcp/server/lit_server.py"],
+      "env": { "PYTHONIOENCODING": "utf-8" },
+      "cwd": "I:/mydesk/ai-for-statistics/_experiments/ch21-应用实践/practice3-mcp/server",
+      "disabled": false
+    }
+  }
+}

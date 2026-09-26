@@ -1,0 +1,58 @@
+# 忽略规则
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+# R
+.Rproj.user/
+.Rhistory
+.RData
+renv/library/
+renv/local/
+
+# Lean 构建产物（源码与文化 SSD 不应入仓）
+.lake/
+build/
+*.olean
+
+# Node（用于 pptx / 前端工具链）
+node_modules/
+
+# 数据与产物：正文中的数据集、模型权重、运行结果不入仓
+data/
+output/
+outputs/
+results/
+plots/
+*.pth
+*.safetensors
+*.gguf
+*.bin
+*.onnx
+
+# 大型中间文件
+*.parquet
+*.arrow
+
+# 环境文件（如需入仓，请改用 environment.yml / pixi.lock 等可复现清单）
+.env
+*.env.local
+
+# 编辑器与系统
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/settings.json
+
+# 临时与过程文件
+_work/
+*.tmp
+*.log
+!*.md

@@ -1,0 +1,15 @@
+{
+  "tools": [
+    "search_arxiv",
+    "get_paper",
+    "to_bibtex",
+    "save_note"
+  ],
+  "search_first200": "{\"count\": 3, \"papers\": [{\"arxiv_id\": \"2512.06946v2\", \"title\": \"Testing the Significance of the Difference-in-Differences Coefficient via Doubly Randomised Inference\", \"authors\": [\"Stanisław Marek Serg",
+  "get_paper": {
+    "found": true,
+    "title": "Testing the Significance of the Difference-in-Differences Coefficient via Doubly Randomised Inference"
+  },
+  "bibtex_citekey": "halkiewicz2025testing",
+  "nonexistent_branch": "{\"error\": \"未找到 0000.0000，无法生成 BibTeX\"}"
+}

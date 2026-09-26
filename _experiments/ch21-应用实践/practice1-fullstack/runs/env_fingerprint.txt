@@ -1,0 +1,13 @@
+== nvidia-smi ==
+name, memory.total [MiB], driver_version, compute_cap
+NVIDIA GeForce RTX 3060, 12288 MiB, 576.88, 8.6
+
+== torch ==
+python 3.10.20
+torch 2.3.0+cu121
+cuda_available True
+device NVIDIA GeForce RTX 3060
+vram_total_GiB 12.0
+
+== disk ==
+H:              173G  105G   69G  61% /h

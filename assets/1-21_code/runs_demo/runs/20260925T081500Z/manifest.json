@@ -1,0 +1,12 @@
+{
+  "run_id": "20260925T081500Z",
+  "created_utc": "2026-09-25T08:15:00Z",
+  "git_commit": null,
+  "command": "python fit.py --data input.csv",
+  "inputs": {
+    "input.csv": "a32dfb9e004bdcddce128c7054968badad94690fe9117d0c51d06eb4d85d0ec8"
+  },
+  "artifacts": {
+    "metrics.json": "0e1291ac591dfca6bef56ef90e18b758af224c521e7d82b53b3ec65c45aaeac2"
+  }
+}

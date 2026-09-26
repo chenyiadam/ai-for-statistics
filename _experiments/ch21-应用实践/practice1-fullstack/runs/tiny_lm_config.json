@@ -1,0 +1,13 @@
+{
+  "vocab": 8000,
+  "block": 256,
+  "n_layer": 6,
+  "n_embd": 256,
+  "n_head": 8,
+  "params": 6852608,
+  "steps": 2500,
+  "val_loss": 6.9852,
+  "train_tokens": 567371,
+  "hardware": "RTX 3060 12GB / i7-10700 / bf16 autocast",
+  "seed": 20260101
+}
