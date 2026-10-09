@@ -1,7 +1,5 @@
 # 第7章 Agent、工具调用与Skill自动化
 
-> **本章定位**：回答"如何把一次性的对话框问答变成可复用、可验证、可交接的科研工作流"。
-> **关键词**：Agent、ReAct 范式、Function Calling、MCP、Skill、SKILL.md、渐进式披露、动态工具检索
 
 ## 本章导读
 
@@ -337,7 +335,7 @@ Schema 的质量直接决定调用成功率：`enum` 约束把自由文本收敛
 
 **Toolformer**（arXiv:2302.04761，*Toolformer: Language Models Can Teach Themselves to Use Tools*，Meta AI）给出了另一条路径：模型通过自监督决定何时调用 API、传什么参数、如何融合结果，在少量示例下自行学会工具调用，不需要逐步人工标注。工程实践中，训练式方案与 Schema 声明式方案是互补的：前者提升模型的工具使用直觉，后者提供可校验的契约。
 
-**从"约定"到"保证"：结构化输出只覆盖格式层。** 各家 API 提供的结构化输出（structured output）通过**受限解码**（constrained decoding）实现：解码器按 JSON Schema 编译出的文法，在每一步屏蔽不合法的 token，使输出在**语法上**必然符合 Schema。这一保证是机械的、百分之百的，开源实现如 Outlines（github.com/dottxt-ai/outlines）可复现同样的机制。但 Schema 约束不到语义层：路径是否存在、列名是否属于这份数据集、单位是毫米还是厘米、`equal_var` 该取 true 还是 false，全部依赖模型对上下文的理解。换言之，受限解码把"解析失败"这一类错误完全消除，把全部残余风险集中在语义错误上；后者只能靠 Schema 之外的运行时校验兜底。
+**从"约定"到"保证"：结构化输出只覆盖格式层。** 各家 API 提供的结构化输出（structured output）通过**受限解码**（constrained decoding）实现：解码器按 JSON Schema 编译出的文法，在每一步屏蔽不合法的 token，使输出在**语法上**必然符合 Schema。这一保证是机械的、百分之百的，开源实现如 Outlines（github.com/dottxt-ai/outlines）可复现同样的机制。但 Schema 约束不到语义层：路径是否存在、列名是否属于这份数据集、单位是毫米还是厘米、`equal_var` 该取 true 还是 false，全部依赖模型对上下文的理解。受限解码把"解析失败"这一类错误完全消除，把全部残余风险集中在语义错误上；后者只能靠 Schema 之外的运行时校验兜底。
 
 下面的模拟把"校验改变错误结构"这一论断量化。设定一次工具调用尝试有四种结局：参数完全正确（0.75）、格式错误（0.15，类型或枚举不合法，Schema 可确定性拦截）、可被运行时发现的语义错误（0.08，文件不存在、列名缺失等）、不可被运行时发现的语义错误（0.02，取错同名列、量纲弄反等）。比较三种策略，每次任务最多尝试 3 次：A 无校验，第一次调用即执行；B 仅 Schema 校验，格式错误被拦截后重试；C Schema 加运行时断言（runtime assertion，`assert os.path.exists(path)`、断言列名与样本量等），可发现的语义错误也触发重试。关注三个量：任务成功率、被察觉的失败、**静默错误**（silent error，错误结果不被察觉地流入下游）。
 
