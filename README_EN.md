@@ -36,11 +36,11 @@ This project is jointly developed and maintained by the two authors.
 
 A student with statistical training who is starting to learn AI faces three questions: **what AI is, how to use AI, and how to do research on AI**.
 
-Existing materials fall into two camps. Engineering tutorials explain how to call APIs and set parameters, but say little about the internal mechanisms of LLMs and never ask what makes an output trustworthy. Survey papers cover the newest systems and methods, but offer no operational path — the reader knows AlphaProof won an IMO silver medal, yet still does not know what to do with the unproven lemma sitting in their own notes.
+Existing materials fall into two camps. Engineering tutorials explain how to build neural networks, call APIs, and set parameters, but they do not care why a conclusion deserves to be trusted. Survey papers cover the newest systems and methods, but offer no operational path — the reader knows AlphaProof won an IMO silver medal, yet still does not know what to do with the unproven lemma sitting in their own notes.
 
 Students from a statistics background face a third obstacle: most materials assume the reader is already fluent in machine-learning vocabulary, even though much of that vocabulary has direct counterparts in statistical language — nobody has written the mapping down.
 
-This project attempts to fill that gap, under three self-imposed constraints:
+This project tries to fill that gap, under three rules it set for itself:
 
 1. **Verification first.** The whole book keeps returning to one standard: what makes an output trustworthy. This thread connects topics that look unrelated — the reward signal in preference alignment is an estimator with sampling variability; hallucination can be derived as a consequence of calibration failure; AI-generated mathematics should be checked by a formal kernel (Lean) or a deterministic executor (an evaluator). These three verification mechanisms are not equally reliable; Section 12.14 ranks them.
 2. **Operability.** Wherever content can be expressed as commands, scripts, templates, or checklists, an executable version is given. Where that is impossible (e.g., "design a good evaluator"), a checklist is provided instead of unverifiable advice.
@@ -48,26 +48,10 @@ This project attempts to fill that gap, under three self-imposed constraints:
 
 The book assumes no machine-learning background, and does not assume the reader wants to become a machine-learning expert. It assumes a reader who needs to judge which AI results are trustworthy, which workflows are worth deploying, and which problems belong on a PhD topic shortlist.
 
----
-
-## 2. Focus Chapters
-
-The current edition runs to 21 chapters. The focus chapters are:
-
-### Chapters 10–14
-
-- Reproducible usage of AI math tools: verbatim prompt templates for statement translation, tactic completion, error explanation, and proof restructuring (§10.8.11, §11.5.7, §13.7.5, §14.7.6); experience-based parameter guidance with do-it-yourself comparison protocols; and result-verification checklists anchored to the Lean kernel and deterministic executors (§10.8.10, §11.9.7, §13.7.7).
-- Hand-held walkthroughs: formalizing $|x+y| \le |x| + |y|$ from scratch (§10.8.12) with a first-person record of a first Lean session (§10.8.13); translating and auditing statistical statements (§11.5.7, §11.9.7); a miniature neuro-symbolic loop (§12.16); a FunSearch-style toy search with a "false champion" post-mortem (§13.10); and the full path from claiming an issue to submitting a PR (§14.7.7–14.7.8).
-
-### Chapter 21
-
-- All four practices were replicated end-to-end on local hardware: training a 6.85M-parameter model from scratch (RTX 3060, bf16), a local Qwen2.5-0.5B chat and FastAPI service, a regression-diagnostics Skill, an MCP server making real arXiv calls, and a 36-configuration Monte-Carlo grid on heteroskedastic size distortion. Run logs, metrics, and audit records are archived in [`_experiments/`](./_experiments/ch21-应用实践/README.md) for readers to cross-check.
-- A new §21.8 on automated workflow agents: coding agents (GitHub Copilot, Codex, Claude Code, Cursor, OpenCode), local-execution agents (Open Interpreter), and platform-type products (Coze, Dify, WorkBuddy) — positioning, installation, and selection guidance.
-- A new AI-assisted derivation archive (`_experiments/ch21-应用实践/ai-derivations/`): for five mathematical/statistical propositions behind Chapter 21, a complete "prompt — derivation — numerical verification" record with a re-runnable verification script.
 
 ---
 
-## 3. The Map: Three Questions, Three Threads
+## 2. The Map: Three Questions, Three Threads
 
 ```text
 What AI is      ───  Ch. 2–5      data → architecture → training & alignment → multimodal & agents
@@ -96,7 +80,7 @@ The threads are not a reading order. Chapter 1 is a compressed version of the wh
 
 ---
 
-## 4. Table of Contents
+## 3. Table of Contents
 
 ### Part I　Introduction
 
@@ -129,7 +113,7 @@ The threads are not a reading order. Chapter 1 is a compressed version of the wh
 | [Ch. 10　Formal Verification and Proof Assistants](./chapters/10-形式化验证与证明助手.md) | Curry–Howard and the trusted computing base; Lean 4 and the four proof assistants; searching Mathlib4; miniF2F; LeanDojo; autoformalization and judging translation fidelity |
 | [Ch. 11　Verifying Mathematical and Statistical Theorems with AI](./chapters/11-用AI验证数学与统计定理.md) | A nine-step operating procedure; quantifier order and convergence modes in statistical statements; three complete formalization case studies (Cauchy–Schwarz; Chebyshev/LLN; unbiasedness and consistency of an estimator); counterexample search; conjecture generation; 12 failure modes |
 | [Ch. 12　Neuro-Symbolic Theorem Proving Systems](./chapters/12-神经符号定理证明系统.md) | The generator–verifier loop formalized; AlphaProof; AlphaGeometry; DeepSeek-Prover-V2; GPT-f; Aristotle; Claude FLT; AI4SLT (formalizing statistical learning theory); the Anderson conjecture; Kakeya; the Erdős counterexample; the reliability hierarchy of four verification mechanisms |
-| [Ch. 13　Program Search, Evolution, and Automated Discovery](./chapters/13-程序搜索进化算法与自动发现.md) | The search paradigm and proposal distributions; FunSearch; AlphaEvolve; AlphaTensor; the Ramanujan Machine; the MIT open-source reimplementation; **evaluator design methodology**; readable code as mathematical insight; connections to optimal design and subset selection |
+| [Ch. 13　Program Search, Evolution, and Automated Discovery](./chapters/13-程序搜索进化算法与自动发现.md) | The search paradigm and proposal distributions; FunSearch; AlphaEvolve; AlphaTensor; the Ramanujan Machine; the MIT open-source reimplementation; **evaluator design methodology**; readable code and mathematical discovery; connections to optimal design and subset selection |
 | [Ch. 14　Human–AI Collaboration, Crowdsourcing, and Large-Scale Formalization](./chapters/14-人机协作众包与大规模形式化工程.md) | The Blueprint workflow; the Equational Theories project (4,694 laws); formalizing PFR; Prove2Me; Terence Tao's public assessment of AI; crowd workflows; credit assignment and controversies |
 
 ### Part V　How to Study AI: Statistics × AI
@@ -152,11 +136,10 @@ The threads are not a reading order. Chapter 1 is a compressed version of the wh
 Supplementary resources live in [`resources/`](./resources/):
 
 - [`resources/术语表.md`](./resources/术语表.md) — a bilingual glossary with chapter references (in Chinese)
-- [`resources/阅读路线图.md`](./resources/阅读路线图.md) — reading plans by background and time budget (in Chinese)
 
 ---
 
-## 5. Quick Start
+## 4. Quick Start
 
 ### 30 minutes: decide whether this book is useful to you
 
@@ -172,7 +155,7 @@ Compress the 4-week plan of [Chapter 10](./chapters/10-形式化验证与证明�
 
 ### One weekend: run the replication package for Chapter 21
 
-Following [`_experiments/`](./_experiments/ch21-应用实践/README.md), replicate all four practices on a CPU-only machine or a single 12GB GPU: train a 6.85M-parameter model from scratch, stand up a local chat and API service, serve an MCP server that queries arXiv for real, and finish the heteroskedastic Monte-Carlo loop. Every script's expected output has been verified locally, and run logs are archived in the repository.
+Following [`_experiments/`](./_experiments/ch21-应用实践/README.md), replicate all four practices on a CPU-only machine or a single 12GB GPU: train a 6.85M-parameter model from scratch, stand up a local chat and API service, serve an MCP server that queries arXiv for real, and finish the heteroskedastic Monte-Carlo grid scan. Every script's expected output has been verified locally, and run logs are archived in the repository.
 
 ### Requirements
 
@@ -180,7 +163,7 @@ The book assumes day-to-day data-analysis ability in Python or R and basic comma
 
 ---
 
-## 6. Repository Structure
+## 5. Repository Structure
 
 ```text
 ai-for-statistics/
@@ -189,7 +172,7 @@ ai-for-statistics/
 ├── LICENSE                   CC BY-NC-SA 4.0
 ├── CONTRIBUTING.md           contribution guide and style rules
 ├── CHANGELOG.md              release notes
-├── _tools/                   repository maintenance tooling
+├── _tools/                   repository maintenance tooling (not committed yet)
 │   ├── check_links.py        batch reachability check for all external links
 │   └── link_report.*         latest check report (JSON and Markdown)
 ├── _experiments/             local replication package (companion to Ch. 21)
@@ -220,15 +203,14 @@ ai-for-statistics/
 │   ├── 20-案例工具链与资源总表.md        (Ch. 20 Resource Tables)
 │   └── 21-应用实践.md                   (Ch. 21 Practice)
 └── resources/
-    ├── 术语表.md             bilingual glossary (Chinese)
-    └── 阅读路线图.md         reading plans (Chinese)
+    └── 术语表.md             bilingual glossary (Chinese)
 ```
 
 Markdown templates, Skill definitions, and command scripts inside the chapters can be copied directly. All code blocks are language-tagged; Lean blocks are tagged `lean` and render in any Lean-aware editor.
 
 ---
 
-## 7. A Note on Timeliness
+## 6. A Note on Timeliness
 
 Some information in this domain decays quickly. The repository handles this in three ways; please keep them in mind when citing:
 
@@ -240,7 +222,7 @@ If you find factual errors, dead links, or improvable wording, please open an is
 
 ---
 
-## 8. License and Citation
+## 7. License and Citation
 
 The text is released under **CC BY-NC-SA 4.0** (see [`LICENSE`](./LICENSE)): free to copy, adapt, and redistribute with attribution and share-alike; no commercial use.
 
@@ -262,7 +244,7 @@ Suggested citation (BibTeX):
 
 ---
 
-## 9. Authors and Acknowledgments
+## 8. Authors and Acknowledgments
 
 ### Authors
 
